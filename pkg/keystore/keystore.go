@@ -80,6 +80,7 @@ type unlocked struct {
 // NewKeyStore creates a keystore for the given directory.
 func NewKeyStore(keydir string, scryptN, scryptP int) *KeyStore {
 	keydir, _ = filepath.Abs(keydir)
+	fmt.Println("NewKeyStore", keydir)
 	ks := &KeyStore{storage: &keyStorePassphrase{keydir, scryptN, scryptP, false}}
 	ks.init(keydir)
 	return ks
@@ -92,6 +93,7 @@ func (ks *KeyStore) init(keydir string) {
 
 	// Initialize the set of unlocked keys and the account cache
 	ks.unlocked = make(map[string]*unlocked)
+	fmt.Println("before newAccountCache")
 	ks.cache, ks.changes = newAccountCache(keydir)
 
 	// TODO: In order for this finalizer to work, there must be no references
@@ -102,7 +104,7 @@ func (ks *KeyStore) init(keydir string) {
 	})
 	// Create the initial list of wallets from the cache
 	accs := ks.cache.accounts()
-
+	fmt.Println("accs := ks.cache.accounts()", accs[0])
 	ks.wallets = make([]Wallet, len(accs))
 	for i := 0; i < len(accs); i++ {
 		ks.wallets[i] = &keystoreWallet{account: accs[i], keystore: ks}
