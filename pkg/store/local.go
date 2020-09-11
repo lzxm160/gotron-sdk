@@ -110,6 +110,7 @@ func FromAddress(addr string) *keystore.KeyStore {
 // FromAddress will return nil if the Base58 string is not found in the imported accounts
 func FromAddressFromDir(addr, pathDir string) *keystore.KeyStore {
 	for _, name := range LocalAccountsFromPath(pathDir) {
+		fmt.Println("LocalAccountsFromPath", name)
 		ks := FromAccountNameFromDir(name, pathDir)
 		allAccounts := ks.Accounts()
 		for _, account := range allAccounts {
