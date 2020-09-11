@@ -94,8 +94,8 @@ func AddressFromAccountName(name string) (string, error) {
 }
 
 // FromAddress will return nil if the Base58 string is not found in the imported accounts
-func FromAddress(addr string) *keystore.KeyStore {
-	for _, name := range LocalAccountsFromPath() {
+func FromAddress(addr, pathDir string) *keystore.KeyStore {
+	for _, name := range LocalAccountsFromPath(pathDir) {
 		ks := FromAccountName(name)
 		allAccounts := ks.Accounts()
 		for _, account := range allAccounts {
@@ -131,12 +131,12 @@ func SetDefaultLocation(directory string) {
 }
 
 // UnlockedKeystore return keystore unlocked
-func UnlockedKeystore(from, passphrase string) (*keystore.KeyStore, *keystore.Account, error) {
+func UnlockedKeystore(from, passphrase, pathDir string) (*keystore.KeyStore, *keystore.Account, error) {
 	sender, err := address.Base58ToAddress(from)
 	if err != nil {
 		return nil, nil, fmt.Errorf("address not valid: %s", from)
 	}
-	ks := FromAddress(from)
+	ks := FromAddress(from, pathDir)
 	if ks == nil {
 		return nil, nil, fmt.Errorf("could not open local keystore for %s", from)
 	}
