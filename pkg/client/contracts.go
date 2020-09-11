@@ -240,6 +240,7 @@ func (g *GrpcClient) DeployContractWithArguments(from, contractName string, abiE
 
 func encodeArgument(method ethereumabi.Method, args []interface{}) ([]interface{}, error) {
 	if len(method.Inputs) != len(args) {
+		fmt.Println(len(method.Inputs), len(args))
 		return nil, errors.New("the number of arguments is not correct")
 	}
 	newArgs := make([]interface{}, len(args))
