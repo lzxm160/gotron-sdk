@@ -9,7 +9,6 @@ import (
 	"github.com/fbsobreira/gotron-sdk/pkg/client"
 	"github.com/fbsobreira/gotron-sdk/pkg/common"
 	"github.com/fbsobreira/gotron-sdk/pkg/keystore"
-	"github.com/fbsobreira/gotron-sdk/pkg/ledger"
 	"github.com/fbsobreira/gotron-sdk/pkg/proto/api"
 	"github.com/fbsobreira/gotron-sdk/pkg/proto/core"
 	proto "github.com/golang/protobuf/proto"
@@ -87,12 +86,14 @@ func (C *Controller) hardwareSignTxForSending() {
 	if C.executionError != nil {
 		return
 	}
-	data, _ := C.GetRawData()
-	signature, err := ledger.SignTx(data)
-	if err != nil {
-		C.executionError = err
-		return
-	}
+	//do nothing because of ledger removed
+
+	//data, _ := C.GetRawData()
+	//signature, err := ledger.SignTx(data)
+	//if err != nil {
+	//	C.executionError = err
+	//	return
+	//}
 
 	/* TODO: validate signature
 	if strings.Compare(signerAddr, address.ToBech32(C.sender.account.Address)) != 0 {
@@ -106,7 +107,7 @@ func (C *Controller) hardwareSignTxForSending() {
 	}
 	*/
 	// add signature
-	C.tx.Signature = append(C.tx.Signature, signature)
+	//C.tx.Signature = append(C.tx.Signature, signature)
 }
 
 // TransactionHash extract hash from TX
