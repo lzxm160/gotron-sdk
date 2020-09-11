@@ -110,7 +110,7 @@ func FromAddress(addr string) *keystore.KeyStore {
 // FromAddress will return nil if the Base58 string is not found in the imported accounts
 func FromAddressFromDir(addr, pathDir string) *keystore.KeyStore {
 	for _, name := range LocalAccountsFromPath(pathDir) {
-		ks := FromAccountName(name)
+		ks := FromAccountNameFromDir(name, pathDir)
 		allAccounts := ks.Accounts()
 		for _, account := range allAccounts {
 			if addr == account.Address.String() {
@@ -125,6 +125,12 @@ func FromAddressFromDir(addr, pathDir string) *keystore.KeyStore {
 func FromAccountName(name string) *keystore.KeyStore {
 	uDir, _ := homedir.Dir()
 	p := path.Join(uDir, c.DefaultConfigDirName, c.DefaultConfigAccountAliasesDirName, name)
+	return keystore.ForPath(p)
+}
+
+// FromAccountName get account from name
+func FromAccountNameFromDir(name, pathDir string) *keystore.KeyStore {
+	p := path.Join(pathDir, name)
 	return keystore.ForPath(p)
 }
 
