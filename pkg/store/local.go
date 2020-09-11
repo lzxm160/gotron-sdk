@@ -41,6 +41,19 @@ func LocalAccounts() []string {
 	return accounts
 }
 
+// LocalAccountsFromPath returns a slice of local account alias names
+func LocalAccountsFromPath(pathDir string) []string {
+	files, _ := ioutil.ReadDir(pathDir)
+	accounts := []string{}
+
+	for _, node := range files {
+		if node.IsDir() {
+			accounts = append(accounts, path.Base(node.Name()))
+		}
+	}
+	return accounts
+}
+
 var (
 	describe = fmt.Sprintf("%-24s\t\t%23s\n", "NAME", "ADDRESS")
 	// ErrNoUnlockBadPassphrase for bad password
@@ -82,7 +95,7 @@ func AddressFromAccountName(name string) (string, error) {
 
 // FromAddress will return nil if the Base58 string is not found in the imported accounts
 func FromAddress(addr string) *keystore.KeyStore {
-	for _, name := range LocalAccounts() {
+	for _, name := range LocalAccountsFromPath() {
 		ks := FromAccountName(name)
 		allAccounts := ks.Accounts()
 		for _, account := range allAccounts {
