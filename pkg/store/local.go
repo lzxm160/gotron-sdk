@@ -113,6 +113,7 @@ func FromAddressFromDir(addr, pathDir string) *keystore.KeyStore {
 	for _, name := range LocalAccountsFromPath(pathDir) {
 		fmt.Println("LocalAccountsFromPath", name)
 		ks := FromAccountNameFromDir(name, pathDir)
+		fmt.Println("ksssss", ks.Accounts(), ks.Wallets())
 		allAccounts := ks.Accounts()
 		fmt.Println("before range")
 		for _, account := range allAccounts {
