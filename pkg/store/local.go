@@ -114,7 +114,9 @@ func FromAddressFromDir(addr, pathDir string) *keystore.KeyStore {
 		fmt.Println("LocalAccountsFromPath", name)
 		ks := FromAccountNameFromDir(name, pathDir)
 		allAccounts := ks.Accounts()
+		fmt.Println("before range")
 		for _, account := range allAccounts {
+			fmt.Println(addr, account.Address.String())
 			if addr == account.Address.String() {
 				return ks
 			}
