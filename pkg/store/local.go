@@ -135,6 +135,7 @@ func FromAccountName(name string) *keystore.KeyStore {
 // FromAccountName get account from name
 func FromAccountNameFromDir(name, pathDir string) *keystore.KeyStore {
 	p := path.Join(pathDir, name)
+	fmt.Println("FromAccountNameFromDir", p)
 	return keystore.ForPath(p)
 }
 
