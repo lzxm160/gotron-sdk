@@ -48,9 +48,9 @@ func LocalAccountsFromPath(pathDir string) []string {
 	fmt.Println("not here?", pathDir)
 	for _, node := range files {
 		fmt.Println("LocalAccountsFromPath1111111111111", node.Name())
-		if node.IsDir() {
-			accounts = append(accounts, path.Base(node.Name()))
-		}
+		//if node.IsDir() {
+		accounts = append(accounts, path.Base(node.Name()))
+		//}
 	}
 	return accounts
 }
