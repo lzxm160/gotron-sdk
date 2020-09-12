@@ -6,7 +6,7 @@ require (
 	github.com/aristanetworks/goarista v0.0.0-20200812190859-4cb0e71f3c0e // indirect
 	github.com/btcsuite/btcd v0.20.1-beta
 	github.com/deckarep/golang-set v1.7.1
-	github.com/ethereum/go-ethereum v1.8.27
+	github.com/ethereum/go-ethereum v1.9.20
 	github.com/golang/protobuf v1.4.2
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/pborman/uuid v1.2.1
