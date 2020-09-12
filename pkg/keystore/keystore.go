@@ -104,7 +104,7 @@ func (ks *KeyStore) init(keydir string) {
 	})
 	// Create the initial list of wallets from the cache
 	accs := ks.cache.accounts()
-	fmt.Println("accs := ks.cache.accounts()", accs[0])
+	//fmt.Println("accs := ks.cache.accounts()", accs[0])
 	ks.wallets = make([]Wallet, len(accs))
 	for i := 0; i < len(accs); i++ {
 		ks.wallets[i] = &keystoreWallet{account: accs[i], keystore: ks}
