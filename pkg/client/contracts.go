@@ -177,7 +177,7 @@ func (g *GrpcClient) DeployContract(from, contractName string,
 }
 
 // DeployContract and return tx result
-func (g *GrpcClient) DeployContractWithArguments(from, contractName string, abiEthereum ethereumabi.ABI,
+func (g *GrpcClient) DeployContractWithArguments(from, contractName string, abiEthereum *ethereumabi.ABI,
 	abi *core.SmartContract_ABI, codeStr string,
 	feeLimit, curPercent, oeLimit int64, args ...interface{}) (*api.TransactionExtention, error) {
 	fmt.Println("DeployContractWithArguments", abiEthereum.Constructor)
