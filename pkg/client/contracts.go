@@ -180,7 +180,7 @@ func (g *GrpcClient) DeployContract(from, contractName string,
 func (g *GrpcClient) DeployContractWithArguments(from, contractName string, abiEthereum ethereumabi.ABI,
 	abi *core.SmartContract_ABI, codeStr string,
 	feeLimit, curPercent, oeLimit int64, args ...interface{}) (*api.TransactionExtention, error) {
-
+	fmt.Println("DeployContractWithArguments", abiEthereum.Constructor)
 	var err error
 
 	fromDesc, err := address.Base58ToAddress(from)
