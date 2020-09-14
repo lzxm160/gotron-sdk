@@ -180,7 +180,6 @@ func (g *GrpcClient) DeployContract(from, contractName string,
 func (g *GrpcClient) DeployContractWithArguments(from, contractName string, abiEthereum *ethereumabi.ABI,
 	abi *core.SmartContract_ABI, codeStr string,
 	feeLimit, curPercent, oeLimit int64, args ...interface{}) (*api.TransactionExtention, error) {
-	fmt.Println("DeployContractWithArguments", abiEthereum.Constructor)
 	var err error
 
 	fromDesc, err := address.Base58ToAddress(from)
@@ -240,7 +239,6 @@ func (g *GrpcClient) DeployContractWithArguments(from, contractName string, abiE
 
 func encodeArgument(method ethereumabi.Method, args []interface{}) ([]interface{}, error) {
 	if len(method.Inputs) != len(args) {
-		fmt.Println(len(method.Inputs), len(args))
 		return nil, errors.New("the number of arguments is not correct")
 	}
 	newArgs := make([]interface{}, len(args))

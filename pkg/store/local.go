@@ -45,9 +45,7 @@ func LocalAccounts() []string {
 func LocalAccountsFromPath(pathDir string) []string {
 	files, _ := ioutil.ReadDir(pathDir)
 	accounts := []string{}
-	fmt.Println("not here?", pathDir)
 	for _, node := range files {
-		fmt.Println("LocalAccountsFromPath1111111111111", node.Name())
 		//if node.IsDir() {
 		accounts = append(accounts, path.Base(node.Name()))
 		//}
@@ -63,7 +61,6 @@ var (
 
 // DescribeLocalAccounts will display all the account alias name and their corresponding one address
 func DescribeLocalAccounts() {
-	fmt.Println(describe)
 	for _, name := range LocalAccounts() {
 		ks := FromAccountName(name)
 		allAccounts := ks.Accounts()
@@ -111,13 +108,9 @@ func FromAddress(addr string) *keystore.KeyStore {
 // FromAddress will return nil if the Base58 string is not found in the imported accounts
 func FromAddressFromDir(addr, pathDir string) *keystore.KeyStore {
 	for _, name := range LocalAccountsFromPath(pathDir) {
-		fmt.Println("LocalAccountsFromPath", name)
 		ks := FromAccountNameFromDir(name, pathDir)
-		fmt.Println("ksssss", ks.Accounts(), ks.Wallets())
 		allAccounts := ks.Accounts()
-		fmt.Println("before range")
 		for _, account := range allAccounts {
-			fmt.Println(addr, account.Address.String())
 			if addr == account.Address.String() {
 				return ks
 			}
@@ -136,7 +129,6 @@ func FromAccountName(name string) *keystore.KeyStore {
 // FromAccountName get account from name
 func FromAccountNameFromDir(name, pathDir string) *keystore.KeyStore {
 	p := path.Join(pathDir, name)
-	fmt.Println("FromAccountNameFromDir", p)
 	return keystore.ForPath(p)
 }
 
