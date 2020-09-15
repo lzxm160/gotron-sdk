@@ -219,8 +219,8 @@ func (g *GrpcClient) DeployContractWithArguments(from, contractName string, abiE
 			ConsumeUserResourcePercent: curPercent,
 			OriginEnergyLimit:          oeLimit,
 			Bytecode:                   bc,
+			CallValue:                  amount,
 		},
-		CallTokenValue: amount,
 	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), g.grpcTimeout)
