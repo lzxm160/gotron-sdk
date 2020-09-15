@@ -178,7 +178,7 @@ func (g *GrpcClient) DeployContract(from, contractName string,
 
 // DeployContract and return tx result
 func (g *GrpcClient) DeployContractWithArguments(from, contractName string, abiEthereum *ethereumabi.ABI,
-	abi *core.SmartContract_ABI, codeStr string,
+	abi *core.SmartContract_ABI, codeStr string, amount int64,
 	feeLimit, curPercent, oeLimit int64, args ...interface{}) (*api.TransactionExtention, error) {
 	var err error
 
@@ -220,6 +220,7 @@ func (g *GrpcClient) DeployContractWithArguments(from, contractName string, abiE
 			OriginEnergyLimit:          oeLimit,
 			Bytecode:                   bc,
 		},
+		CallTokenValue: amount,
 	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), g.grpcTimeout)
